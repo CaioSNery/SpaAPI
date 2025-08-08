@@ -26,12 +26,14 @@ namespace SpaAPI.Services
             var cliente = await _context.Clientes.FindAsync(id);
             if (cliente == null) return null;
 
+
             cliente.Nome = upcliente.Nome;
+            cliente.DataDeNascimento = upcliente.DataDeNascimento;
             cliente.Cpf = upcliente.Cpf;
             cliente.Telefone = upcliente.Telefone;
 
-            _context.Update(upcliente);
             await _context.SaveChangesAsync();
+
 
             return upcliente;
         }
