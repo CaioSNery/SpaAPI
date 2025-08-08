@@ -32,7 +32,7 @@ namespace Spa.Controller
             return Ok(resultado);
         }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Vendas>>> GetVendas()
+        public async Task<ActionResult<IEnumerable<Venda>>> GetVendas()
         {
             var vendas = await _service.ObterVendasRealizadasAsync();
 
@@ -40,7 +40,7 @@ namespace Spa.Controller
 
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<Vendas>> GetIdVendas(int id)
+        public async Task<ActionResult<Venda>> GetIdVendas(int id)
         {
             var venda = await _service.ObterVendaPorIdAsync(id);
             if (venda == null) return NotFound();

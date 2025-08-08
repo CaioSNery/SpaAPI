@@ -11,9 +11,14 @@ namespace Spa.Data
     {
         public AppDbContext(DbContextOptions options) : base(options) { }
 
-        public DbSet<Clientes> Clientes { get; set; }
-        public DbSet<Vendas> Vendas { get; set; }
-        public DbSet<Serviços> Serviços{get; set;}
-        
+        public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Venda> Vendas { get; set; }
+        public DbSet<Serviço> Serviços { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+        }
+
     }
 }

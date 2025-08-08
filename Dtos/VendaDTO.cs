@@ -7,10 +7,11 @@ namespace Spa.Models
 {
     public class VendaDTO
     {
-        public required string IdCliente { get; set; }
-        public required string IdServico { get; set; }
+        public int IdCliente { get; set; }
+        public int IdServico { get; set; }
+        public decimal Total { get; set; }
 
-        public int Quantidade { get; set; }
+        public int Sessoes { get; set; }
         public DateTime DataVenda { get; set; } = DateTime.Now;
     }
 }

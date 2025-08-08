@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projetos\\APISpa\\Spa\\Spa.csproj": {}
+    "c:\\Projetos\\SpaAPI\\SpaAPI\\Spa.csproj": {}
   },
   "projects": {
-    "C:\\Projetos\\APISpa\\Spa\\Spa.csproj": {
+    "c:\\Projetos\\SpaAPI\\SpaAPI\\Spa.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projetos\\APISpa\\Spa\\Spa.csproj",
+        "projectUniqueName": "c:\\Projetos\\SpaAPI\\SpaAPI\\Spa.csproj",
         "projectName": "Spa",
-        "projectPath": "C:\\Projetos\\APISpa\\Spa\\Spa.csproj",
+        "projectPath": "c:\\Projetos\\SpaAPI\\SpaAPI\\Spa.csproj",
         "packagesPath": "C:\\Users\\Caio Nery\\.nuget\\packages\\",
-        "outputPath": "C:\\Projetos\\APISpa\\Spa\\obj\\",
+        "outputPath": "c:\\Projetos\\SpaAPI\\SpaAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Caio Nery\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -43,6 +43,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[8.0.17, )"
@@ -87,7 +91,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.411/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.413/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

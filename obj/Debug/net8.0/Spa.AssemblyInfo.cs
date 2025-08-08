@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Spa")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2e377f4a9e5cbe2e7d8ceb4d4f0e7dd30e1be788")]
 [assembly: System.Reflection.AssemblyProductAttribute("Spa")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Spa")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

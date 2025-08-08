@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Spa.Data;
 using Spa.Models;
+using SpaAPI.Dtos;
+using SpaAPI.Interface;
 
 namespace Spa.Controller
 {
@@ -13,47 +15,43 @@ namespace Spa.Controller
     [Route("api/[controller]")]
     public class ServicoController : ControllerBase
     {
-        private readonly AppDbContext _appcontext;
-        public ServicoController(AppDbContext appcontext)
+        private readonly IServicoService _service;
+        public ServicoController(IServicoService service)
         {
-            _appcontext = appcontext;
+            _service = service;
         }
 
         [HttpPost]
-        public async Task<ActionResult<Serviços>> AddServico(Serviços servicos)
+        public async Task<IActionResult> CriarServico(ServicoDTO dto)
         {
-            _appcontext.Serviços.Add(servicos);
-            await _appcontext.SaveChangesAsync();
-            return Ok(servicos);
-        }
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Serviços>>> GetServicos()
-        {
-            var servicos = await _appcontext.Serviços.ToListAsync();
-            return Ok(servicos);
-        }
-        [HttpPut]
-        public async Task<ActionResult<Serviços>> UpServico(int id, [FromBody] Serviços servicosup)
-        {
-            if (id != servicosup.Id)
+            var resultado = await _service.CadastrarNovoServicoAsync(dto);
+            return Ok(new
             {
-                return BadRequest();
-            }
-            _appcontext.Serviços.Update(servicosup);
-            await _appcontext.SaveChangesAsync();
+                mensagem = "Serviço registrado com sucesso!",
+                dados = resultado
+            });
 
-            return NoContent();
+
         }
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Serviços>> DelServicos(int id)
+
+        [HttpGet]
+        public async Task<IActionResult> ListaDeServiços()
         {
-            var servico = _appcontext.Serviços.Find(id);
-            if (servico == null) return NotFound();
+            var resultado = await _service.ListarServicosCadastradosAsync();
+            return Ok(resultado);
+        }
 
-            _appcontext.Serviços.Remove(servico);
-            await _appcontext.SaveChangesAsync();
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletarServico(int id)
+        {
+            var resultado = await _service.DeletarCadastroServicoAsync(id);
+            if (!resultado) return NotFound();
 
             return NoContent();
         }
+
+
+
+
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Spa.Data;
 
@@ -11,9 +12,11 @@ using Spa.Data;
 namespace Spa.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250808000940_Refatorando")]
+    partial class Refatorando
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +25,7 @@ namespace Spa.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Spa.Models.Clientes", b =>
+            modelBuilder.Entity("Spa.Models.Cliente", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -33,34 +36,42 @@ namespace Spa.Migrations
                     b.Property<string>("Cpf")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("DataDeNascimento")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Telefone")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clientes");
+                    b.ToTable("Clientes", (string)null);
                 });
 
-            modelBuilder.Entity("Spa.Models.Serviços", b =>
+            modelBuilder.Entity("Spa.Models.Serviço", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Nome")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Preco")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<string>("Tipo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Serviços");
+                    b.ToTable("Serviços", (string)null);
                 });
 
-            modelBuilder.Entity("Spa.Models.Vendas", b =>
+            modelBuilder.Entity("Spa.Models.Venda", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -68,16 +79,16 @@ namespace Spa.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DataVenda")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("NomeCliente")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ServicoId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("NomeServico")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Quantidade")
+                    b.Property<int>("Sessoes")
                         .HasColumnType("int");
 
                     b.Property<decimal>("ValorUnitario")
@@ -85,7 +96,30 @@ namespace Spa.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Vendas");
+                    b.HasIndex("ClienteId");
+
+                    b.HasIndex("ServicoId");
+
+                    b.ToTable("Vendas", (string)null);
+                });
+
+            modelBuilder.Entity("Spa.Models.Venda", b =>
+                {
+                    b.HasOne("Spa.Models.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Spa.Models.Serviço", "Servico")
+                        .WithMany()
+                        .HasForeignKey("ServicoId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Cliente");
+
+                    b.Navigation("Servico");
                 });
 #pragma warning restore 612, 618
         }
