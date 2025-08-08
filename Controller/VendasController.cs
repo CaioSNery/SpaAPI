@@ -10,7 +10,8 @@ using Spa.Models;
 
 namespace Spa.Controller
 {
-    [Route("[controller]")]
+    [ApiController]
+    [Route("api/[controller]")]
     public class VendasController : ControllerBase
     {
         private readonly IVendaService _service;
@@ -31,6 +32,7 @@ namespace Spa.Controller
             }
             return Ok(resultado);
         }
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Venda>>> GetVendas()
         {
@@ -39,6 +41,7 @@ namespace Spa.Controller
             return Ok(vendas);
 
         }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<Venda>> GetIdVendas(int id)
         {
@@ -48,5 +51,10 @@ namespace Spa.Controller
             return Ok(venda);
         }
 
+
+
+
+
     }
+
 }

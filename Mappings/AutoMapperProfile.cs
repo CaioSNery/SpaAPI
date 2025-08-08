@@ -16,6 +16,14 @@ namespace SpaAPI.Mappings
             CreateMap<Cliente, ClienteDetalhesDto>().ReverseMap();
 
             CreateMap<Serviço, ServicoDTO>().ReverseMap();
+
+            CreateMap<Venda, VendaDTO>()
+            .ForMember(dest => dest.IdCliente, opt => opt.MapFrom(src => src.ClienteId))
+            .ForMember(dest => dest.IdServico, opt => opt.MapFrom(src => src.ServicoId));
+
+            CreateMap<Venda, VendaDetalhesDTO>()
+            .ForMember(dest => dest.IdCliente, opt => opt.MapFrom(src => src.ServicoId))
+            .ForMember(dest => dest.IdServico, opt => opt.MapFrom(src => src.ServicoId));
         }
     }
 }

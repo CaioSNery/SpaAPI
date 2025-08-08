@@ -4572,7 +4572,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Caio Nery\\.nuget\\packages\\": {}
+    "C:\\Users\\computador\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -4580,11 +4580,11 @@
       "projectUniqueName": "C:\\Projetos\\SpaAPI\\SpaAPI\\Spa.csproj",
       "projectName": "Spa",
       "projectPath": "C:\\Projetos\\SpaAPI\\SpaAPI\\Spa.csproj",
-      "packagesPath": "C:\\Users\\Caio Nery\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\computador\\.nuget\\packages\\",
       "outputPath": "C:\\Projetos\\SpaAPI\\SpaAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Caio Nery\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\computador\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -4661,7 +4661,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.413/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.410/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

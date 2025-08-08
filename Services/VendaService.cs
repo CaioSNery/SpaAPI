@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Spa.Data;
 using Spa.Interface;
 using Spa.Models;
+using SpaAPI.Dtos;
 
 namespace Spa.Services
 {
@@ -19,14 +20,20 @@ namespace Spa.Services
             _context = context;
             _mapper = mapper;
         }
-        public async Task<Venda> ObterVendaPorIdAsync(int id)
+        public async Task<VendaDTO> ObterVendaPorIdAsync(int id)
         {
-            return await _context.Vendas.Include(v => v.ClienteId).FirstOrDefaultAsync(v => v.Id == id);
+            var venda = await _context.Vendas.FindAsync(id);
+            if (venda == null) return null;
+
+            return _mapper.Map<VendaDTO>(venda);
         }
 
-        public async Task<IEnumerable<Venda>> ObterVendasRealizadasAsync()
+        public async Task<IEnumerable<VendaDetalhesDTO>> ObterVendasRealizadasAsync()
         {
-            return await _context.Vendas.Include(v => v.ClienteId).ToListAsync();
+            var vendas = await _context.Vendas.ToListAsync();
+            if (vendas == null) return null;
+
+            return _mapper.Map<IEnumerable<VendaDetalhesDTO>>(vendas);
         }
 
         public async Task<object> RealizarVendasAsync(VendaDTO dto)

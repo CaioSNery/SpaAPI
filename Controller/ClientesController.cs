@@ -46,7 +46,7 @@ namespace Spa.Controller
         public async Task<IActionResult> BuscarPorId(int id)
         {
             var resultado = await _service.BuscarCadastroClientePorIdAsync(id);
-            if (resultado == null) return NotFound("Nenhum cadastro foi encontrado");
+            if (resultado == null) return NotFound("Não houve cadastro encontrado");
 
             return Ok(resultado);
         }
